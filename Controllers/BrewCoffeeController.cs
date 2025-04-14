@@ -22,6 +22,16 @@ namespace CoffeeShop.Controllers
         public async Task<IActionResult> BrewCoffee()
         {
             var result = await _coffeeShopService.BrewCoffee(counter);
+
+            if (result.Message.Equals(Config.UnavailableMessage, StringComparison.OrdinalIgnoreCase))
+            {
+                return StatusCode(StatusCodes.Status503ServiceUnavailable, Config.UnavailableMessage);
+            }
+            else if (result.Message.Equals(Config.TeapotMessage, StringComparison.OrdinalIgnoreCase))
+            {
+                return StatusCode(StatusCodes.Status418ImATeapot, Config.TeapotMessage);
+            }
+
             return Ok(result);
         }
     }
