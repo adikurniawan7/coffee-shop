@@ -1,6 +1,6 @@
 @CoffeeShop_HostAddress = http://localhost:5069
 
-GET {{CoffeeShop_HostAddress}}/brewcoffee/
+GET {{CoffeeShop_HostAddress}}/coffeeshop/
 Accept: application/json
 
 ###

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeShop", "CoffeeShop.csproj", "{AE44C6FD-382E-4CE6-A1DE-9A4EAAE185D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeShop.Test", "..\CoffeeShop.Test\CoffeeShop.Test.csproj", "{ED6B3300-7275-4335-BAE9-1B8D9585D841}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{AE44C6FD-382E-4CE6-A1DE-9A4EAAE185D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE44C6FD-382E-4CE6-A1DE-9A4EAAE185D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE44C6FD-382E-4CE6-A1DE-9A4EAAE185D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED6B3300-7275-4335-BAE9-1B8D9585D841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED6B3300-7275-4335-BAE9-1B8D9585D841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED6B3300-7275-4335-BAE9-1B8D9585D841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED6B3300-7275-4335-BAE9-1B8D9585D841}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
