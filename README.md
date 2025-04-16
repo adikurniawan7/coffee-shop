@@ -1,12 +1,15 @@
 # Coffee Shop API
 
 This HTTP API controls an imaginary internet-connected coffee machine.
+
 Coffee shop API contains one endpoint `GET /brew-coffee`. When this endpoint is called, it returns a 200 OK status code  with a status message and the current date/time in the response body as a JSON object, with  the date/time formatted as an ISO-8601 value e.g.  
 
-```{
+```
+{
  “message”: “Your piping hot coffee is ready”,
  “prepared”: “2021-02-03T11:56:24+0900”
-};```
+};
+```
  
 On every fifth call to the endpoint defined in #1, the endpoint should return `503 Service Unavailable` with an empty response body, to signify that the coffee machine is out of  coffee; 
 
