@@ -9,12 +9,15 @@ public class CoffeeShopTest
 {
     private ICoffeeShopService _coffeeShopService;
 
+    private string DateTimeNow => DateTime.UtcNow.ToString(Config.DateFormat, CultureInfo.InvariantCulture);
+
     [SetUp]
     public void Setup()
     {
         var mockDateService = new Mock<IDateService>();
+        var mockWeatherService = new Mock<IWeatherService>();
 
-        _coffeeShopService = new CoffeeShopService(mockDateService.Object);
+        _coffeeShopService = new CoffeeShopService(mockDateService.Object, mockWeatherService.Object);
     }
 
     [Test]
@@ -22,8 +25,8 @@ public class CoffeeShopTest
     {
         var response = new BrewCoffeeResponse
         (
-            Message: Config.SuccessMessage,
-            Prepared: DateTime.UtcNow.ToString(Config.DateFormat, CultureInfo.InvariantCulture)
+            Message: Config.RegularSuccessMessage,
+            Prepared: DateTimeNow
         );
         Config.CoffeeMachineCallCount = 1;
         var result = await _coffeeShopService.BrewCoffee();
@@ -36,7 +39,7 @@ public class CoffeeShopTest
         var response = new BrewCoffeeResponse
         (
             Message: Config.UnavailableMessage,
-            Prepared: DateTime.UtcNow.ToString(Config.DateFormat, CultureInfo.InvariantCulture)
+            Prepared: DateTimeNow
         );
         Config.CoffeeMachineCallCount = 5;
         var result = await _coffeeShopService.BrewCoffee();
@@ -47,18 +50,38 @@ public class CoffeeShopTest
     public async Task BrewCoffee_ReturnImATeapot()
     {
         var mockDateService = new Mock<IDateService>();
+        var mockWeatherService = new Mock<IWeatherService>();
 
         mockDateService.Setup(x => x.TodayDate).Returns(new DateTime(2025, 4, 1));
-        var coffeeShopService = new CoffeeShopService(mockDateService.Object);
+        var coffeeShopService = new CoffeeShopService(mockDateService.Object, mockWeatherService.Object);
 
         var response = new BrewCoffeeResponse
         (
             Message: Config.TeapotMessage,
-            Prepared: DateTime.UtcNow.ToString(Config.DateFormat, CultureInfo.InvariantCulture)
+            Prepared: DateTimeNow
         );
 
         var result = await coffeeShopService.BrewCoffee();
         Assert.That(response.Message, Is.EqualTo(result.Message) );
+    }
+
+    [Test]
+    public async Task BrewCoffee_ReturnIcedCoffeeMessage()
+    {
+        var mockDateService = new Mock<IDateService>();
+        var mockWeatherService = new Mock<IWeatherService>();
+
+        mockWeatherService.Setup(x => x.GetCurrentTemperature()).ReturnsAsync(35);
+        var coffeeShopService = new CoffeeShopService(mockDateService.Object, mockWeatherService.Object);
+
+        var response = new BrewCoffeeResponse
+        (
+            Message: Config.HotWeatherSuccessMessage,
+            Prepared: DateTimeNow
+        );
+
+        var result = await coffeeShopService.BrewCoffee();
+        Assert.That(response.Message, Is.EqualTo(result.Message));
     }
 }
 

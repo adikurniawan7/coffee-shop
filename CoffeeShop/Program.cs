@@ -8,6 +8,7 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<IDateService, DateService>();
+builder.Services.AddSingleton<IWeatherService, WeatherService>();
 builder.Services.AddSingleton<ICoffeeShopService, CoffeeShopService>();
 
 var app = builder.Build();

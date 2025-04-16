@@ -15,6 +15,8 @@ On every fifth call to the endpoint defined in #1, the endpoint should return `5
 
 If the date is April 1st, then all calls to the endpoint defined should return `418 I’m a teapot` instead, with an empty response body, to signify that the endpoint is not brewing coffee today (see https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418)
 
+When the endpoint `GET /brew-coffee` is called, the endpoint should check a third-party weather service (https://api.open-meteo.com/), and if the current temperature is greater than 30°C, the returned message should be changed to “Your refreshing iced  coffee is ready”.
+
 ## Requirements
 
 .NET Core 9.0, Visual Studio 2022 (Recommended)
